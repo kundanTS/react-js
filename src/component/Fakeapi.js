@@ -11,6 +11,8 @@ const Fakeapi = () => {
     const [allproducts, setAllproducts] = useState([]);
     const [active, setActive] = useState();
 
+    const [cart, setCart] = useState(0);
+
     const getApiData = (url) => {
       try {
         axios.get(url)
@@ -57,7 +59,7 @@ const Fakeapi = () => {
     <>
 
     <div className='products-categories'>
-    <ul>
+      <ul>
         {productsCategories.map((categories, index) => {
           return (
               <li key={index} className={active === categories ? "active" : "inactive"}  onClick={ ()=> {
@@ -68,9 +70,9 @@ const Fakeapi = () => {
         </ul>
     </div>
 
-
+    <div className='addedtoCart'>{cart}</div>
       <div className='box-wrapper'>
-        {isLoading ? <h3>Loading data...</h3> : productsList.map((products) =>{
+                {isLoading ? <h3>Loading data...</h3> : productsList.map((products) =>{
             const {id, category, description, image, price, title} = products;
             return (
                 <div className='box' key={id}>
